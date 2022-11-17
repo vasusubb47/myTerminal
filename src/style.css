@@ -1,0 +1,26 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#cmdArea {
+  width: 100%;
+  resize: none;
+}
+
+.asciiArt {
+  font-family: monospace;
+  white-space: pre;
+  margin: 0;
+  margin-bottom: .5rem;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #242424;
+  color: #fff;
+}
+
+p {
+  margin: 0;
+}
