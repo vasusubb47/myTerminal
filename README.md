@@ -91,7 +91,7 @@ $ yarn start
 This project is under license from Apache 2.0 . For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/Vasu7777py" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/Vasu7777py" target="_blank">Vasu Subbannavar</a>
 
 &#xa0;
 

@@ -1,6 +1,6 @@
 import './style.css';
 
-import cmd, { cmdType, alias, aliasType } from "./cmd";
+import cmd, { cmdType, cmdPramReqList } from "./cmd";
 
 const asciiArt1 = 
 " __      __                _____       <br>"+
@@ -19,7 +19,7 @@ const asciiArt2 =
 
 
 // all the HTML elements reqired for project
-const welcome = document.getElementById("welcome");
+const welcome = document.getElementById("welcome") as HTMLDivElement;
 const cmdArea = document.getElementById("cmdArea") as HTMLTextAreaElement;
 const output = document.getElementById("output") as HTMLParagraphElement;
 
@@ -29,7 +29,6 @@ if (welcome){
   }else {
     (welcome.childNodes[1] as HTMLParagraphElement).innerHTML = asciiArt1;
   }
-  console.log(cmd)
 }
 
 cmdArea.addEventListener(
@@ -46,11 +45,19 @@ cmdArea.addEventListener(
 );
 
 const runCmd = (cmdStr: string) => {
-  if (cmdStr in cmd) {
-    cmd[cmdStr as keyof cmdType].call();
-  }else if (cmdStr in alias) {
-    cmd[alias[cmdStr as keyof aliasType] as keyof cmdType].call()
-  } else {
-    output.innerHTML += cmdStr + "<br>";
+  const cmdInput = cmdStr.split(" ");
+  if (cmdInput.length < 0) {
+    return;
   }
+  if (cmdInput[0] in cmd) {
+    if (cmdPramReqList.indexOf(cmdInput[0] as keyof cmdType) >= 0) {
+      const CMD = cmdInput.shift() as string;
+      cmd[CMD as keyof cmdType].callP(cmdInput);
+    }else {
+      cmd[cmdInput[0] as keyof cmdType].call();
+    }
+  }else {
+    output.innerHTML += cmdStr + " is not a valid command <br>";
+  }
+  output.innerHTML += "<hr>";
 }
